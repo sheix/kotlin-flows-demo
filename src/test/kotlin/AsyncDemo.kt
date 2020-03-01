@@ -42,7 +42,10 @@ class AsyncDemo {
 
     @Test
     fun `GIVEN - flow WHEN - converted to flux and subscribed THEN - runs as expected`() {
-        createFlow(withBuffer = true, withDistinct = false).asFlux().test()
+        createFlow(withBuffer = true, withDistinct = false).
+            .asFlux().doOnNext {
+                println(it)
+            }.test()
             .expectNext(1)
             .expectNext(4)
             .expectNext(4)
