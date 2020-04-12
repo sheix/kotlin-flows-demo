@@ -8,11 +8,11 @@ import kotlin.system.measureTimeMillis
 @InternalCoroutinesApi
 @ExperimentalCoroutinesApi
 fun main() = runBlocking<Unit> {
-    println("-FLOW DEMO--")
-    flowDemo()
-    println("------------")
     println("-ASYNC DEMO-")
     asyncDemo()
+    println("------------")
+    println("-FLOW DEMO--")
+    flowDemo()
     println("------------")
     println("-CANCEL DMO-")
     cancelDemo()
@@ -25,18 +25,15 @@ private fun asyncDemo() = runBlocking {
     val longInt = async { longMap(1000) }
     val anotherLongInt = async { longMap(5) }
 
-    val longSum = longInt.await()
-    var long2 : Int? = null
-    if (longSum>500)
-        long2 = anotherLongInt.await() + longSum
-
+    val longSum = longInt.await() + anotherLongInt.await()
+    
     val time = Instant.now().toEpochMilli() - startTime.toEpochMilli()
 
-    println("Here is the answer ($long2) and it took $time milliseconds to get there")
+    println("Here is the answer ($longSum) and it took $time milliseconds to get there")
 
     assert(time < 1100)
     assert(time > 1000)
-    long2
+    longSum
 }
 
 @InternalCoroutinesApi
