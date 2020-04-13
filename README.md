@@ -32,7 +32,7 @@ Also, in order to work, you have to add the `spring.io` repository to repositori
 
 Coroutines is asynchronous programming model introduced in kotlin. To learn more about coroutines, take a look in official [documentation](https://kotlinlang.org/docs/reference/coroutines-overview.html)
 
-## Where coroutines is better than the thread?
+## Where coroutines is better than threads
 
 Take a look at [vsthread.kt](src\main\kotlin\vsthread.kt). There is a mainfile which spawns large amount of threads and coroutines and measures the time it takes. Run it and see the difference. Coroutines is also less memory-consuming.
 
